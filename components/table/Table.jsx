@@ -1093,6 +1093,8 @@ export default {
             // Add sorter logic
             const onHeaderCellClick = colProps.on.click;
             colProps.on.click = (...args) => {
+              // 拉伸时不触发 click 事件
+              if (this.$el._resizing) return delete this.$el._resizing;
               this.toggleSortOrder(column);
               if (onHeaderCellClick) {
                 onHeaderCellClick(...args);
@@ -1119,6 +1121,8 @@ export default {
               </div>
             </span>,
             filterDropdown,
+            // 设置 resizable 时，增加一个元素供点击
+            <div class={column.resizable ? `${prefixCls}-column-has-resizable` : ''}></div>,
           ],
           customHeaderCell,
         };
