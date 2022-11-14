@@ -7,8 +7,6 @@ on:
   push:
     tags:
       - 'v*'
-    branches:
-      - "1.x"
 
 jobs:
   publish-npm:
